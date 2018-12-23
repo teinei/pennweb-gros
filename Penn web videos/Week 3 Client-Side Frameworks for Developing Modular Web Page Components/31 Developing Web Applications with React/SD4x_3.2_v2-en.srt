@@ -1,0 +1,616 @@
+0
+00:00:05,593 --> 00:00:08,786
+This week we're talking about React, a JavaScript library for
+
+1
+00:00:08,786 --> 00:00:10,570
+building dynamic webpages.
+
+2
+00:00:10,570 --> 00:00:13,700
+Now the most important part of React is this idea of components.
+
+3
+00:00:13,700 --> 00:00:18,650
+Components are modular, reusable chunks of code that we can drop into our
+
+4
+00:00:18,650 --> 00:00:23,300
+HTML pages and that dynamically generate content based on their state and
+
+5
+00:00:23,300 --> 00:00:27,450
+user events In this lesson, we'll start to see how to define components and
+
+6
+00:00:27,450 --> 00:00:30,590
+how we can include them in our html pages.
+
+7
+00:00:30,590 --> 00:00:33,110
+React components are JavaScript objects
+
+8
+00:00:33,110 --> 00:00:36,140
+that are based off the React.Component prototype.
+
+9
+00:00:36,140 --> 00:00:41,360
+And in the next few slides, we'll see two different ways to create react components.
+
+10
+00:00:41,360 --> 00:00:45,110
+React components have four important parts, their properties,
+
+11
+00:00:45,110 --> 00:00:49,390
+their state variables and their callback functions or event handlers, and
+
+12
+00:00:49,390 --> 00:00:53,570
+then their render function, which is used to generate the HTML.
+
+13
+00:00:53,570 --> 00:00:56,410
+The VirtualDOM manages each component and
+
+14
+00:00:56,410 --> 00:01:01,030
+calls the render function whenever it's time to re-render that component.
+
+15
+00:01:01,030 --> 00:01:04,510
+Here we see the classical way of creating a react component.
+
+16
+00:01:04,510 --> 00:01:07,840
+We'll use the React.createClass function and
+
+17
+00:01:07,840 --> 00:01:12,120
+pass it an object which contains the component specification.
+
+18
+00:01:12,120 --> 00:01:15,210
+So we see that we're creating a variable called HelloComponent
+
+19
+00:01:15,210 --> 00:01:17,360
+which will be an object, and
+
+20
+00:01:17,360 --> 00:01:20,650
+we'll use this React.createClass function to create that object.
+
+21
+00:01:21,780 --> 00:01:24,599
+The argument to createClass is itself an object.
+
+22
+00:01:25,800 --> 00:01:31,160
+That one of the properties of that object is render which is a function
+
+23
+00:01:31,160 --> 00:01:35,060
+that will be called when it's time to draw or render this component.
+
+24
+00:01:35,060 --> 00:01:40,180
+The render function needs to return the HTML to be rendered,
+
+25
+00:01:40,180 --> 00:01:43,480
+to be drawn and here we're using JSX.
+
+26
+00:01:43,480 --> 00:01:45,060
+If you remember from last time,
+
+27
+00:01:45,060 --> 00:01:51,010
+JSX is a technology that allows us to embed HTML right in our JavaScript.
+
+28
+00:01:51,010 --> 00:01:55,120
+Once we've created the custom component in our JavaScript, then we can render it or
+
+29
+00:01:55,120 --> 00:02:00,180
+drop it into our HTML using the reactDOM.render function.
+
+30
+00:02:00,180 --> 00:02:03,170
+ReactDOM.render takes two arguments.
+
+31
+00:02:03,170 --> 00:02:07,970
+The first is the JSX or HTML that we want to render.
+
+32
+00:02:07,970 --> 00:02:11,980
+Here we see that we're rendering a component called hello component,
+
+33
+00:02:11,980 --> 00:02:14,090
+which is the one that we just created.
+
+34
+00:02:14,090 --> 00:02:17,340
+You can think of it as creating new HTML tags.
+
+35
+00:02:17,340 --> 00:02:22,490
+The second argument to rReactDOM.render is the location of where we want to drop or
+
+36
+00:02:22,490 --> 00:02:26,190
+place that component, and here we're using the DOM.
+
+37
+00:02:26,190 --> 00:02:30,200
+We created a div called container, we're selecting that element by its ID,
+
+38
+00:02:30,200 --> 00:02:34,160
+and we'll put the HelloComponent at that location in the HTML.
+
+39
+00:02:34,160 --> 00:02:38,210
+Another way of creating the react components is using
+
+40
+00:02:38,210 --> 00:02:42,531
+the notation from a version of JavaScript known as ES6.
+
+41
+00:02:42,531 --> 00:02:46,269
+We'll see ES6 a little bit later this week, but for now,
+
+42
+00:02:46,269 --> 00:02:51,000
+suffice it to say that the ES6 is the most recent version of JavaScript and
+
+43
+00:02:51,000 --> 00:02:54,537
+allows us to create a class instead of a single object.
+
+44
+00:02:54,537 --> 00:02:55,861
+This is the notation or
+
+45
+00:02:55,861 --> 00:03:00,540
+the syntax that I'll use the rest of this week when creating react components.
+
+46
+00:03:01,660 --> 00:03:06,800
+Rather then creating a variable called HelloComponent, we'll create a class.
+
+47
+00:03:06,800 --> 00:03:11,710
+This class will extend the React.Component base class.
+
+48
+00:03:11,710 --> 00:03:14,780
+Here we're defining the render function in our class.
+
+49
+00:03:14,780 --> 00:03:17,180
+Which looks the same as it did before and
+
+50
+00:03:17,180 --> 00:03:21,930
+will be invoked when we drop this component into the html.
+
+51
+00:03:21,930 --> 00:03:24,900
+At the beginning of this lesson I said there are four important parts of
+
+52
+00:03:24,900 --> 00:03:26,250
+a react component.
+
+53
+00:03:26,250 --> 00:03:30,790
+We already seen the render function and now here are the next two important parts.
+
+54
+00:03:30,790 --> 00:03:34,770
+The first are the component's properties, properties are the attributes and
+
+55
+00:03:34,770 --> 00:03:38,440
+values that are set when the component is created,
+
+56
+00:03:38,440 --> 00:03:41,780
+they should never be modified after initialization.
+
+57
+00:03:41,780 --> 00:03:46,990
+The other important part is the state, the state is also attributes and values,
+
+58
+00:03:46,990 --> 00:03:50,630
+but they represent the current state of the component, based on what it does or
+
+59
+00:03:50,630 --> 00:03:51,930
+represents.
+
+60
+00:03:51,930 --> 00:03:56,390
+They can and should be modified during the component's life cycle.
+
+61
+00:03:56,390 --> 00:03:59,640
+And in the next few slides we'll see some examples of each.
+
+62
+00:03:59,640 --> 00:04:03,710
+It's worth pointing out that both the properties and the state can be used when
+
+63
+00:04:03,710 --> 00:04:08,230
+rendering the component, but the important difference is that properties are set
+
+64
+00:04:08,230 --> 00:04:13,420
+when the component is initialized, and state changes during the component's life.
+
+65
+00:04:13,420 --> 00:04:15,850
+Let's talk about component properties.
+
+66
+00:04:15,850 --> 00:04:19,740
+As I mentioned, component properties are the attributes and values that
+
+67
+00:04:19,740 --> 00:04:23,800
+are assigned when the object is created, but should not be modified afterward.
+
+68
+00:04:23,800 --> 00:04:29,380
+A component can access its properties through a property called props,
+
+69
+00:04:29,380 --> 00:04:33,170
+which is an object containing all of the property values.
+
+70
+00:04:33,170 --> 00:04:38,280
+We can set the properties of a component when we render the component
+
+71
+00:04:38,280 --> 00:04:40,660
+using ReactDOM.render.
+
+72
+00:04:40,660 --> 00:04:44,740
+Here we see that we have a component called HelloUser, and
+
+73
+00:04:44,740 --> 00:04:48,780
+we set its name property to the string Maria.
+
+74
+00:04:48,780 --> 00:04:53,060
+So you can think of this as passing a variable or passing an argument to
+
+75
+00:04:53,060 --> 00:04:58,450
+the component when its' created but what we're doing is setting it's name property.
+
+76
+00:04:58,450 --> 00:05:02,730
+Now in the component I have my hello user component and
+
+77
+00:05:02,730 --> 00:05:08,910
+in it's render function I can return some HTML for instance hello and
+
+78
+00:05:08,910 --> 00:05:13,870
+then I can access the property using this.props.name.
+
+79
+00:05:13,870 --> 00:05:18,680
+This.props is the name of the property in the component.
+
+80
+00:05:18,680 --> 00:05:23,610
+It is an object and one of its properties is name which
+
+81
+00:05:23,610 --> 00:05:28,595
+was initialized when we rendered this component using ReactDOM.render.
+
+82
+00:05:28,595 --> 00:05:31,760
+The next important part of the component is its state.
+
+83
+00:05:31,760 --> 00:05:34,740
+The state is also a set of variables but
+
+84
+00:05:34,740 --> 00:05:37,740
+these can change during the component's life cycle.
+
+85
+00:05:37,740 --> 00:05:40,785
+The state is always initialized in the constructor,
+
+86
+00:05:40,785 --> 00:05:45,262
+which is the function that's called when the component or object is created.
+
+87
+00:05:45,262 --> 00:05:50,820
+And then it can access the state properties, using this.state.
+
+88
+00:05:50,820 --> 00:05:55,220
+In this example we'll show the number of times that this page has been viewed.
+
+89
+00:05:55,220 --> 00:05:59,240
+We create a component called TimesViewed, and it will have a constructor.
+
+90
+00:05:59,240 --> 00:06:02,100
+The constructor as I mentioned is the function that's called
+
+91
+00:06:02,100 --> 00:06:04,900
+when this component or object is created.
+
+92
+00:06:04,900 --> 00:06:09,390
+Now the arguments to the constructor are the props and we'll need to
+
+93
+00:06:09,390 --> 00:06:14,830
+pass those to the super class constructor using this notation super(props).
+
+94
+00:06:14,830 --> 00:06:18,494
+Demo initialize a variable called timesViewed = 0,
+
+95
+00:06:18,494 --> 00:06:21,170
+and then we'll look in local storage.
+
+96
+00:06:21,170 --> 00:06:25,530
+You may remember last week when we started talking about JavaScript in HTML,
+
+97
+00:06:25,530 --> 00:06:30,920
+that local storage was a way of storing values in between accesses to a webpage.
+
+98
+00:06:32,110 --> 00:06:34,820
+If local storage has a property called timesViewed
+
+99
+00:06:36,170 --> 00:06:40,580
+then we will set our local timesViewed variable to that value.
+
+100
+00:06:40,580 --> 00:06:44,780
+If it doesn't have a times viewed, then timesViewed will still be 0, so
+
+101
+00:06:44,780 --> 00:06:48,370
+that when we increment it here, we're incrementing it either to one,
+
+102
+00:06:48,370 --> 00:06:52,500
+if it's the first time, or incrementing whatever its previous value was.
+
+103
+00:06:52,500 --> 00:06:54,900
+Now here's the most important part of this example,
+
+104
+00:06:54,900 --> 00:06:57,018
+setting the state of this component.
+
+105
+00:06:57,018 --> 00:07:00,422
+We use this.state to access it's state.
+
+106
+00:07:00,422 --> 00:07:04,957
+And we set it to this object where we have the property numViews and
+
+107
+00:07:04,957 --> 00:07:07,530
+the variable timesViewed.
+
+108
+00:07:07,530 --> 00:07:11,440
+Last, to make sure this works for the next time we open this page,
+
+109
+00:07:11,440 --> 00:07:14,050
+we need to update localStorage.
+
+110
+00:07:14,050 --> 00:07:16,950
+Then we have the render function for times viewed.
+
+111
+00:07:16,950 --> 00:07:20,880
+The render function will return some text in bold and
+
+112
+00:07:20,880 --> 00:07:23,910
+it will return the numViews variable from the state.
+
+113
+00:07:25,020 --> 00:07:29,700
+That is, if we can access this component's state using this.state.
+
+114
+00:07:29,700 --> 00:07:33,550
+State is an object and one of its properties is numViews.
+
+115
+00:07:33,550 --> 00:07:38,550
+And this will return the number of views which we set here in the state, the last
+
+116
+00:07:38,550 --> 00:07:42,870
+part of this lesson is to talk about what's known as the component life cycle.
+
+117
+00:07:42,870 --> 00:07:46,270
+Each component goes through three stages of it's life where it's being created,
+
+118
+00:07:46,270 --> 00:07:50,900
+where it's being updated and then where it's being destroyed or
+
+119
+00:07:50,900 --> 00:07:52,040
+as we say unmounted.
+
+120
+00:07:53,290 --> 00:07:57,160
+At each point of its life cycle, React can invoke,
+
+121
+00:07:57,160 --> 00:08:02,310
+optionally, different functions that you can write for controlling the component.
+
+122
+00:08:02,310 --> 00:08:05,690
+The first part of the component's life is where it's being created, or
+
+123
+00:08:05,690 --> 00:08:07,280
+as we say, mounted.
+
+124
+00:08:07,280 --> 00:08:08,960
+We already saw the constructor,
+
+125
+00:08:08,960 --> 00:08:12,750
+which is the function that's called when the component is created and
+
+126
+00:08:12,750 --> 00:08:16,400
+initializes the state potentially based on the properties.
+
+127
+00:08:16,400 --> 00:08:20,060
+Then before the component is added to the VirtualDOM
+
+128
+00:08:20,060 --> 00:08:25,020
+the component will componentWillMount is called, in this function we can do any work that
+
+129
+00:08:25,020 --> 00:08:28,430
+we want to do before we add it to the VirtualDOM.
+
+130
+00:08:28,430 --> 00:08:32,790
+Once it's added to the VirtualDOM then the render function is called and
+
+131
+00:08:32,790 --> 00:08:36,110
+then after that ComponentDidMount is invoked and
+
+132
+00:08:36,110 --> 00:08:41,110
+at that point the component can start accessing other parts of the VirtualDOM.
+
+133
+00:08:41,110 --> 00:08:44,340
+Next in the components life is its cycle of being updated.
+
+134
+00:08:44,340 --> 00:08:49,170
+We are going to see later how the component can react to user events.
+
+135
+00:08:49,170 --> 00:08:51,920
+But, for now, let's talk about the four callback functions
+
+136
+00:08:51,920 --> 00:08:54,680
+that can be invoked during its lifecycle.
+
+137
+00:08:54,680 --> 00:08:57,520
+First is component will receive props.
+
+138
+00:08:57,520 --> 00:09:01,540
+This is invoked right before it receives new props, for instance,
+
+139
+00:09:01,540 --> 00:09:04,350
+when its parent is being re-rendered.
+
+140
+00:09:04,350 --> 00:09:07,870
+This allows us to compare the old props to the new props
+
+141
+00:09:07,870 --> 00:09:09,570
+in case we need to do anything.
+
+142
+00:09:09,570 --> 00:09:11,635
+The component doesn't have to be re-rendered.
+
+143
+00:09:11,635 --> 00:09:15,780
+Before it's re-rendered, the shouldComponentUpdate is called, and
+
+144
+00:09:15,780 --> 00:09:20,370
+that returns a boolean, indicating whether this component should be re-rendered.
+
+145
+00:09:20,370 --> 00:09:25,290
+If its about to be re-rendered, the componenWillUpdate is called and
+
+146
+00:09:25,290 --> 00:09:29,100
+then after its re-rendered, componentDidUpdate is called.
+
+147
+00:09:29,100 --> 00:09:32,440
+Last When it's the end of the component's life and it's about to
+
+148
+00:09:32,440 --> 00:09:37,340
+be removed from the VirtualDOM, the componentWillUnmount function is invoked.
+
+149
+00:09:38,560 --> 00:09:40,820
+In this lesson, we've seen how to create a component,
+
+150
+00:09:40,820 --> 00:09:43,130
+how to specify it's properties and it's state, and
+
+151
+00:09:43,130 --> 00:09:48,530
+how to use it's render () function to use JSX to render the HTML for that component.
+
+152
+00:09:48,530 --> 00:09:49,473
+In the next lesson,
+
+153
+00:09:49,473 --> 00:09:52,647
+we'll start looking at how the component can react to user events.
+
