@@ -1,0 +1,1288 @@
+0
+00:00:05,421 --> 00:00:09,015
+We've been looking at React, which allows us to create modular JavaScript
+
+1
+00:00:09,015 --> 00:00:11,510
+components for use in our web applications.
+
+2
+00:00:11,510 --> 00:00:15,220
+So far, we've been writing these components in our HTML pages.
+
+3
+00:00:15,220 --> 00:00:16,790
+But as the components get bigger, and
+
+4
+00:00:16,790 --> 00:00:20,400
+as we get more of them, the amount of code will start to grow.
+
+5
+00:00:20,400 --> 00:00:23,820
+So how can we separate these components into different files and
+
+6
+00:00:23,820 --> 00:00:25,920
+then include them into our application?
+
+7
+00:00:27,060 --> 00:00:29,070
+Here I'll introduce a tool called Node.
+
+8
+00:00:29,070 --> 00:00:31,020
+Node is a free, open source platform and
+
+9
+00:00:31,020 --> 00:00:35,100
+framework built in JavaScript, that we'll see a lot more in week four.
+
+10
+00:00:36,480 --> 00:00:40,910
+Node includes a suite of tools that allows the user to create any sort of JavaScript,
+
+11
+00:00:40,910 --> 00:00:43,190
+and thus, React application.
+
+12
+00:00:43,190 --> 00:00:46,840
+And most importantly, includes a tool called the Node Package Manager, or
+
+13
+00:00:46,840 --> 00:00:51,426
+npm, which allows us to install programs and manage dependencies.
+
+14
+00:00:51,426 --> 00:00:54,820
+Here we're going to see how we can use Node to help us deploy
+
+15
+00:00:54,820 --> 00:00:57,030
+a larger React application.
+
+16
+00:00:57,030 --> 00:01:01,320
+One of the benefits to using Node to deploy the React application is that
+
+17
+00:01:01,320 --> 00:01:06,830
+instead of including all of the JavaScript code within the script tags in the HTML,
+
+18
+00:01:06,830 --> 00:01:09,800
+now we can separate the components into different files
+
+19
+00:01:09,800 --> 00:01:12,140
+to make the code more modular.
+
+20
+00:01:12,140 --> 00:01:16,390
+Which means that it's easier to manage, easier to change, easier to understand.
+
+21
+00:01:16,390 --> 00:01:17,820
+In our JavaScript files,
+
+22
+00:01:17,820 --> 00:01:22,160
+Node allows us to incorporate dependencies using two keywords.
+
+23
+00:01:22,160 --> 00:01:26,770
+The first one is require, which says that we need to use this library.
+
+24
+00:01:26,770 --> 00:01:29,949
+And the other one is import, which is just shorthand for
+
+25
+00:01:29,949 --> 00:01:33,390
+importing code from another file into this file.
+
+26
+00:01:33,390 --> 00:01:36,570
+To install Node on your computer, just go to their website,
+
+27
+00:01:36,570 --> 00:01:40,600
+where you can download and install Node, and any appropriate packages.
+
+28
+00:01:40,600 --> 00:01:42,410
+Now we'll also need to use npm, or
+
+29
+00:01:42,410 --> 00:01:46,700
+Node Package Manager, which always comes with a Node installation.
+
+30
+00:01:46,700 --> 00:01:50,990
+But be sure to update to the most recent version using
+
+31
+00:01:50,990 --> 00:01:55,486
+the command we see here, which is npm install npm -g.
+
+32
+00:01:55,486 --> 00:02:00,210
+So why do we need to use a tool like Node when we're creating our React application?
+
+33
+00:02:00,210 --> 00:02:05,090
+Well, one reason is that we want to manage and include the different dependencies.
+
+34
+00:02:05,090 --> 00:02:09,120
+In the previous examples, we've seen that we need to include the React library,
+
+35
+00:02:09,120 --> 00:02:14,170
+the React-DOM library, etc., and a tool like Node will help us manage all of that.
+
+36
+00:02:14,170 --> 00:02:17,570
+Some browsers only support older versions of JavaScript, and
+
+37
+00:02:17,570 --> 00:02:21,160
+as we'll see later in the course, we may want to use newer versions.
+
+38
+00:02:21,160 --> 00:02:24,610
+However, somehow we have to make sure that the code is compatible
+
+39
+00:02:24,610 --> 00:02:26,120
+with those old browsers.
+
+40
+00:02:26,120 --> 00:02:29,990
+We've been using JSX in our React component's render functions, but
+
+41
+00:02:29,990 --> 00:02:32,340
+we need to transform that into JavaScript.
+
+42
+00:02:33,520 --> 00:02:36,020
+And last, we want to have some modularity.
+
+43
+00:02:36,020 --> 00:02:39,980
+We want to be able to break up the different React modules or components
+
+44
+00:02:39,980 --> 00:02:44,690
+into separate files, and then bundle them together into a single application.
+
+45
+00:02:44,690 --> 00:02:50,260
+Node helps us address all of those things by incorporating a tool called Babel for
+
+46
+00:02:50,260 --> 00:02:53,310
+doing JSX and ES6 transformation.
+
+47
+00:02:53,310 --> 00:02:57,370
+ES6 is a newer version of JavaScript that we'll see later.
+
+48
+00:02:57,370 --> 00:03:01,350
+And incorporating a tool called Webpack which bundles all of the components into
+
+49
+00:03:01,350 --> 00:03:02,449
+a single application.
+
+50
+00:03:03,600 --> 00:03:08,650
+Once you've installed Node and npm, you can install this tool
+
+51
+00:03:08,650 --> 00:03:13,840
+using the command npm install -g create-react-app,
+
+52
+00:03:13,840 --> 00:03:18,620
+which will install the package that allows you to create React apps using Node.
+
+53
+00:03:18,620 --> 00:03:23,050
+Once you've installed it, you can run this command, create-react-app,
+
+54
+00:03:23,050 --> 00:03:26,950
+followed by the name of the directory where you want to install your app, and
+
+55
+00:03:26,950 --> 00:03:31,150
+this will set up a new React application on your computer.
+
+56
+00:03:31,150 --> 00:03:34,100
+Among the many files and directories that this will create on your computer,
+
+57
+00:03:34,100 --> 00:03:36,210
+there are three important ones.
+
+58
+00:03:36,210 --> 00:03:40,530
+The first one is package.json, this is the configuration file that
+
+59
+00:03:40,530 --> 00:03:44,470
+includes all the information about your app and the dependencies.
+
+60
+00:03:44,470 --> 00:03:46,530
+It'll also create a public directory.
+
+61
+00:03:46,530 --> 00:03:51,795
+This is where you'll put all of the static content, for instance, HTML images, etc.
+
+62
+00:03:51,795 --> 00:03:55,740
+And it will lastly create a source directory or src directory.
+
+63
+00:03:55,740 --> 00:03:59,470
+That's where it'll put executable things such as JavaScript.
+
+64
+00:03:59,470 --> 00:04:02,880
+So now you've downloaded and installed Node, you've used
+
+65
+00:04:02,880 --> 00:04:08,340
+the Node Package Manager, or npm, to install the create-react-app package.
+
+66
+00:04:08,340 --> 00:04:13,545
+And then you've used the create-react package to create a new application.
+
+67
+00:04:13,545 --> 00:04:18,573
+Now we're ready to start the default React application that you installed
+
+68
+00:04:18,573 --> 00:04:22,962
+by changing directory to that location, using Command Prompt or
+
+69
+00:04:22,962 --> 00:04:27,720
+Terminal, and then simply running the command npm start.
+
+70
+00:04:27,720 --> 00:04:32,042
+This will start a web server on your computer that's listening for
+
+71
+00:04:32,042 --> 00:04:34,827
+incoming HTTP requests on port 3000.
+
+72
+00:04:34,827 --> 00:04:37,270
+The port is simply part of the address.
+
+73
+00:04:37,270 --> 00:04:41,860
+It allows your computer to have multiple web servers running at the same time.
+
+74
+00:04:41,860 --> 00:04:46,804
+This one is listening on this particular port, which is number 3000.
+
+75
+00:04:46,804 --> 00:04:51,618
+Now if you'd like to see the default web application in your browser,
+
+76
+00:04:51,618 --> 00:04:56,270
+you can just open localhost:3000 from your computer.
+
+77
+00:04:56,270 --> 00:05:00,170
+And you'll see the default React application that looks like this.
+
+78
+00:05:00,170 --> 00:05:01,820
+We've seen how to install Node and
+
+79
+00:05:01,820 --> 00:05:06,600
+Node Package Manager, how to install the create-react-app package, and
+
+80
+00:05:06,600 --> 00:05:11,020
+then how to use the create-react package to create a React app.
+
+81
+00:05:11,020 --> 00:05:14,300
+Now, we've started the React app and we've gotten the default one.
+
+82
+00:05:14,300 --> 00:05:18,010
+But now let's see how we could modify it and add our own components.
+
+83
+00:05:18,010 --> 00:05:19,530
+In this simple example,
+
+84
+00:05:19,530 --> 00:05:23,390
+we'll add the Counter component that we created in a previous lesson.
+
+85
+00:05:23,390 --> 00:05:26,710
+This one just has the button that every time you click it,
+
+86
+00:05:26,710 --> 00:05:28,550
+it increments some counter, and
+
+87
+00:05:28,550 --> 00:05:31,858
+the number of times you've clicked the button is displayed in the page.
+
+88
+00:05:31,858 --> 00:05:37,046
+Rather than having the code for the Counter component in our HTML page,
+
+89
+00:05:37,046 --> 00:05:42,764
+we would put it in a separate file in the source directory called Counter.js.
+
+90
+00:05:42,764 --> 00:05:48,154
+At the top of that file, we would include this line that creates the variable called
+
+91
+00:05:48,154 --> 00:05:54,260
+React and uses the keyword require to say that we're requiring the react library.
+
+92
+00:05:54,260 --> 00:05:58,210
+Then we would create the Counter component just as we did before
+
+93
+00:05:58,210 --> 00:06:00,520
+by extending React.Component.
+
+94
+00:06:00,520 --> 00:06:03,440
+We'd still have the constructor, incrementCount function,
+
+95
+00:06:03,440 --> 00:06:04,390
+the render function.
+
+96
+00:06:04,390 --> 00:06:07,240
+All of that is exactly the same as before.
+
+97
+00:06:07,240 --> 00:06:11,260
+Now at the bottom of the file, we would say export default Counter,
+
+98
+00:06:11,260 --> 00:06:14,490
+which allows other JavaScript files to use the code,
+
+99
+00:06:14,490 --> 00:06:18,010
+in particular the Counter component that we've defined here.
+
+100
+00:06:18,010 --> 00:06:20,749
+Now that we've created our Counter component,
+
+101
+00:06:20,749 --> 00:06:22,631
+we want to use it in our React app.
+
+102
+00:06:22,631 --> 00:06:29,880
+src/App.js is the main component or the main piece of code for our app.
+
+103
+00:06:29,880 --> 00:06:34,090
+At the top of that file, we would use import Counter from and
+
+104
+00:06:34,090 --> 00:06:38,050
+then the name of the JavaScript file where we created Counter.
+
+105
+00:06:38,050 --> 00:06:42,410
+That just allows us to use the Counter component here in this file.
+
+106
+00:06:42,410 --> 00:06:45,830
+The App class is exactly the same as it was before.
+
+107
+00:06:45,830 --> 00:06:49,750
+But now we can use the Counter component by putting it in the render function,
+
+108
+00:06:49,750 --> 00:06:52,550
+and this will use our Counter.
+
+109
+00:06:52,550 --> 00:06:57,410
+On most computers the browser will in fact automatically refresh, and
+
+110
+00:06:57,410 --> 00:07:02,330
+we'll see now that our Count component has been included in our app.
+
+111
+00:07:02,330 --> 00:07:06,010
+We started this lesson talking about the problems of having many components within
+
+112
+00:07:06,010 --> 00:07:07,480
+the HTML page.
+
+113
+00:07:07,480 --> 00:07:08,830
+So now in this example,
+
+114
+00:07:08,830 --> 00:07:12,205
+we'll see where we have many components defined in many different files.
+
+115
+00:07:12,205 --> 00:07:14,480
+And then we'll talk about how can we test them?
+
+116
+00:07:14,480 --> 00:07:17,000
+How do we know that our application works correctly?
+
+117
+00:07:17,000 --> 00:07:20,830
+This example is known as the React Dogs example.
+
+118
+00:07:20,830 --> 00:07:25,700
+In this example, we have a list of dogs with their picture, their name,
+
+119
+00:07:25,700 --> 00:07:27,090
+and their breed.
+
+120
+00:07:27,090 --> 00:07:29,910
+And then in the bottom left we have a form
+
+121
+00:07:29,910 --> 00:07:32,530
+that allows us to add more dogs to the list.
+
+122
+00:07:32,530 --> 00:07:35,350
+When I put information into the form and
+
+123
+00:07:35,350 --> 00:07:40,430
+I click the Submit button, another dog will be added to the list.
+
+124
+00:07:40,430 --> 00:07:44,610
+And then when I click the little X next to the dog's breed,
+
+125
+00:07:44,610 --> 00:07:47,000
+that will remove the dog from the list.
+
+126
+00:07:47,000 --> 00:07:50,850
+So let's see, how did we do this in React, and how did we separate
+
+127
+00:07:50,850 --> 00:07:55,090
+the different components in different files and then combine them together?
+
+128
+00:07:55,090 --> 00:07:57,020
+In all of these React apps,
+
+129
+00:07:57,020 --> 00:08:00,890
+the parent of the entire app will be a component called App.
+
+130
+00:08:00,890 --> 00:08:04,600
+Inside the App component, we'll have a component called Dogs,
+
+131
+00:08:04,600 --> 00:08:06,980
+which will be the list of all the different dogs.
+
+132
+00:08:08,050 --> 00:08:12,950
+Inside the Dogs component, we'll have DogItems which has the dog picture, name,
+
+133
+00:08:12,950 --> 00:08:14,240
+and breed.
+
+134
+00:08:14,240 --> 00:08:18,120
+Also in the App component, we'll have an AddDog component,
+
+135
+00:08:18,120 --> 00:08:22,190
+which is the form that allows us to add a dog to the list.
+
+136
+00:08:22,190 --> 00:08:25,900
+This is the code for App.js.
+
+137
+00:08:25,900 --> 00:08:29,400
+A lot of it is similar to what we've seen before, but now, of course,
+
+138
+00:08:29,400 --> 00:08:33,000
+we're including code that we've written elsewhere.
+
+139
+00:08:33,000 --> 00:08:37,520
+At the top of App.js we need to import React, and
+
+140
+00:08:37,520 --> 00:08:42,780
+we'll also import Component, or React.Component, from the React library.
+
+141
+00:08:42,780 --> 00:08:47,680
+We're going to import the Dogs component that we've implemented in Dogs.js,
+
+142
+00:08:47,680 --> 00:08:52,240
+which I've put in the components folder, or directory.
+
+143
+00:08:52,240 --> 00:08:56,704
+Likewise, there will be an AddDog component that's in AddDog.js,
+
+144
+00:08:56,704 --> 00:09:01,230
+which is also in the components folder, or directory.
+
+145
+00:09:01,230 --> 00:09:06,580
+And lastly, for this app, we'll include a CSS file, called App.css.
+
+146
+00:09:06,580 --> 00:09:09,500
+Now we write our React component called App.
+
+147
+00:09:10,670 --> 00:09:12,940
+I won't show the details of the constructor, but
+
+148
+00:09:12,940 --> 00:09:16,000
+let's just say that the state of this app
+
+149
+00:09:16,000 --> 00:09:19,470
+includes the array of all the dogs that we're going to display.
+
+150
+00:09:19,470 --> 00:09:24,410
+We'll have a callback function, or a handler function, called handleAddDog,
+
+151
+00:09:24,410 --> 00:09:27,770
+which takes a dog object and will add it to the array.
+
+152
+00:09:27,770 --> 00:09:30,260
+Likewise, we'll have a handleDeleteDog function
+
+153
+00:09:30,260 --> 00:09:33,040
+that takes the name of the dog we want to remove from the array.
+
+154
+00:09:34,100 --> 00:09:35,860
+Now we have the render function,
+
+155
+00:09:35,860 --> 00:09:40,600
+which is going to return a div that's using the CSS class called App.
+
+156
+00:09:40,600 --> 00:09:43,790
+The render function is really the point of this example.
+
+157
+00:09:43,790 --> 00:09:48,370
+If we go back and look at the rendered webpage, we see that the App component,
+
+158
+00:09:48,370 --> 00:09:51,550
+which is the outer component, has two subcomponents, or
+
+159
+00:09:51,550 --> 00:09:55,210
+child components, Dogs, and AddDog.
+
+160
+00:09:55,210 --> 00:09:58,610
+In our JavaScript, we're going to include the Dogs component,
+
+161
+00:09:58,610 --> 00:10:03,890
+and we're going to pass it the array of dogs which is in the app state,
+
+162
+00:10:03,890 --> 00:10:06,690
+and we'll call the property dogs.
+
+163
+00:10:06,690 --> 00:10:11,220
+We'll also pass a property called onDelete, which is a reference
+
+164
+00:10:11,220 --> 00:10:15,310
+to the handleDeleteDog function that we've defined up here.
+
+165
+00:10:15,310 --> 00:10:19,380
+This will allow the Dogs component to invoke the handleDeleteDog function
+
+166
+00:10:19,380 --> 00:10:20,650
+defined in App.
+
+167
+00:10:20,650 --> 00:10:23,400
+Likewise, we'll include the AddDog component.
+
+168
+00:10:23,400 --> 00:10:27,330
+This is the form that allows us to add more dogs to the array.
+
+169
+00:10:27,330 --> 00:10:30,330
+And it will have a prompt called onAddDog,
+
+170
+00:10:30,330 --> 00:10:34,310
+which will be the handleAddDog function that we've defined up here.
+
+171
+00:10:34,310 --> 00:10:36,420
+We won't look at that example in any more detail,
+
+172
+00:10:36,420 --> 00:10:39,700
+because the point is simply that we can use the keyword import
+
+173
+00:10:39,700 --> 00:10:44,410
+to import the React components that we've defined in other .js files.
+
+174
+00:10:44,410 --> 00:10:47,570
+For the rest of this lesson, though, I wanna talk about testing.
+
+175
+00:10:47,570 --> 00:10:51,410
+How do we know that our React application is implemented correctly?
+
+176
+00:10:51,410 --> 00:10:56,110
+For testing our React app, we're going to use these three packages.
+
+177
+00:10:56,110 --> 00:10:58,780
+The first is Mocha, which is a test runner or
+
+178
+00:10:58,780 --> 00:11:02,668
+testing framework that can be used with any type of JavaScript code.
+
+179
+00:11:03,780 --> 00:11:05,359
+We'll also use Chai.
+
+180
+00:11:05,359 --> 00:11:09,816
+Chai is an assertion library that lets us easily check whether the behavior we're
+
+181
+00:11:09,816 --> 00:11:12,970
+seeing from our program is what we expected.
+
+182
+00:11:12,970 --> 00:11:17,050
+And last, we'll use Enzyme, which is a testing utility specifically for
+
+183
+00:11:17,050 --> 00:11:18,790
+React applications.
+
+184
+00:11:18,790 --> 00:11:22,570
+If we want to include Enzyme and Chai in our program,
+
+185
+00:11:22,570 --> 00:11:27,708
+we need to install those packages using this instruction here, npm install
+
+186
+00:11:27,708 --> 00:11:33,740
+--save-dev enzyme react-test-renderer chai.
+
+187
+00:11:33,740 --> 00:11:39,120
+Earlier, I mentioned that our JavaScript code would go in the source or src folder.
+
+188
+00:11:39,120 --> 00:11:44,030
+Within the source folder, we're going to create a subdirectory called tests,
+
+189
+00:11:44,030 --> 00:11:45,530
+where we'll put all of our test code.
+
+190
+00:11:47,060 --> 00:11:51,540
+By convention the name of the file that includes the test
+
+191
+00:11:51,540 --> 00:11:54,550
+would end with the .test.js extension.
+
+192
+00:11:55,840 --> 00:11:58,550
+For instance, if we're testing our Dogs component,
+
+193
+00:11:58,550 --> 00:12:03,200
+the convention would be to call that file Dogs.test.js.
+
+194
+00:12:03,200 --> 00:12:07,200
+When we used the create-react-app package to create our default React app,
+
+195
+00:12:07,200 --> 00:12:11,980
+it should have created the file App.test.js.
+
+196
+00:12:11,980 --> 00:12:15,070
+If not, you can certainly create this file on your own.
+
+197
+00:12:15,070 --> 00:12:16,020
+When we write our tests,
+
+198
+00:12:16,020 --> 00:12:21,180
+we need to make sure that we import the necessary components and libraries.
+
+199
+00:12:21,180 --> 00:12:24,010
+We, of course, need React and ReactDOM.
+
+200
+00:12:24,010 --> 00:12:26,847
+From Enzyme, we need these keywords mount and
+
+201
+00:12:26,847 --> 00:12:30,858
+shallow that we're going to use to create our React components.
+
+202
+00:12:30,858 --> 00:12:34,524
+And then from Chai, we'll use the keyword expect which
+
+203
+00:12:34,524 --> 00:12:39,440
+allows us to say what we expect to happen when we're testing our code.
+
+204
+00:12:39,440 --> 00:12:42,850
+So this would be App.test.js.
+
+205
+00:12:42,850 --> 00:12:46,970
+At the top, we're going to import React from the react library.
+
+206
+00:12:46,970 --> 00:12:50,400
+We're going to import the expect keyword, or function, from chai.
+
+207
+00:12:51,640 --> 00:12:53,160
+And we'll import mount and
+
+208
+00:12:53,160 --> 00:12:56,590
+shallow from enzyme, that we'll see in just a little bit.
+
+209
+00:12:56,590 --> 00:13:00,595
+We also need the component that we're actually testing, so
+
+210
+00:13:00,595 --> 00:13:03,680
+import App from the App.js file.
+
+211
+00:13:03,680 --> 00:13:06,020
+Now what we're doing is writing Mocha tests.
+
+212
+00:13:06,020 --> 00:13:11,010
+We'll use the Mocha testing framework to define and then execute our tests.
+
+213
+00:13:11,010 --> 00:13:12,240
+First, we'll use the keyword, or
+
+214
+00:13:12,240 --> 00:13:16,520
+function, describe, that allows us to describe a Test suite.
+
+215
+00:13:16,520 --> 00:13:18,980
+A Test suite is simply a collection
+
+216
+00:13:18,980 --> 00:13:22,990
+of test cases that are all trying to test the same piece of code.
+
+217
+00:13:22,990 --> 00:13:24,940
+In this case, the App component.
+
+218
+00:13:24,940 --> 00:13:28,700
+Here we have a comment or a message that describes what this Test suite does.
+
+219
+00:13:29,820 --> 00:13:33,400
+And then we have the function that includes all of our tests.
+
+220
+00:13:33,400 --> 00:13:37,480
+To write an individual test case, we use the keyword, or function, it.
+
+221
+00:13:37,480 --> 00:13:41,420
+The first argument to it is the string describing what we're testing here.
+
+222
+00:13:41,420 --> 00:13:45,860
+Here we're testing that there's only one element in the App CSS class.
+
+223
+00:13:47,100 --> 00:13:49,900
+Then we have the function, which is the test itself.
+
+224
+00:13:49,900 --> 00:13:52,370
+Here we'll create a constant called wrapper.
+
+225
+00:13:52,370 --> 00:13:54,840
+Here we're using the shallow keyword, or function,
+
+226
+00:13:54,840 --> 00:13:59,930
+that we've imported from Enzyme that allows us to create our React component.
+
+227
+00:13:59,930 --> 00:14:03,935
+shallow does a shallow creation which creates the component but
+
+228
+00:14:03,935 --> 00:14:09,215
+not the subcomponents, not its child components, for instance, Dogs or AddDog.
+
+229
+00:14:09,215 --> 00:14:13,572
+In this case, we're only creating an instance of the App component.
+
+230
+00:14:13,572 --> 00:14:17,600
+Now that we've created the component, we can specify what we expect to happen.
+
+231
+00:14:19,190 --> 00:14:21,260
+Using the expect keyword, or function,
+
+232
+00:14:21,260 --> 00:14:25,520
+that we've imported from Chai, we can say that when we use the wrapper and
+
+233
+00:14:25,520 --> 00:14:32,030
+try to find anything in the App CSS class that there should be something.
+
+234
+00:14:32,030 --> 00:14:34,900
+And in fact, there should only be one thing.
+
+235
+00:14:34,900 --> 00:14:40,420
+That is, there should only be one HTML element in the App CSS class
+
+236
+00:14:40,420 --> 00:14:42,960
+that would be in our App component.
+
+237
+00:14:42,960 --> 00:14:46,280
+Now let's see how we would test the relationships between different
+
+238
+00:14:46,280 --> 00:14:47,700
+components.
+
+239
+00:14:47,700 --> 00:14:52,220
+This code here could be in the same test file, in the same test suite, or
+
+240
+00:14:52,220 --> 00:14:53,890
+it could be in a different one.
+
+241
+00:14:53,890 --> 00:14:57,340
+As before, we're writing an individual test case,
+
+242
+00:14:57,340 --> 00:14:59,670
+which has the message of what we're testing,
+
+243
+00:14:59,670 --> 00:15:04,050
+that the Dog List contains two dogs, and then the function that runs this test.
+
+244
+00:15:05,290 --> 00:15:06,330
+We'll create our wrapper.
+
+245
+00:15:07,490 --> 00:15:12,050
+And now this time instead of using a shallow creation, we'll use the keyword,
+
+246
+00:15:12,050 --> 00:15:15,260
+or function, mount that we've imported from Enzyme.
+
+247
+00:15:15,260 --> 00:15:20,626
+mount will do a deep creation, that is, it will create not only the App component but
+
+248
+00:15:20,626 --> 00:15:25,150
+all of its dependencies and their dependencies and so on.
+
+249
+00:15:25,150 --> 00:15:27,680
+In this case, what we're expecting
+
+250
+00:15:27,680 --> 00:15:31,900
+is that we're able to find a Dogs component within the App component.
+
+251
+00:15:33,490 --> 00:15:38,129
+And within that, we should be able to find a DogItem component within Dogs.
+
+252
+00:15:39,330 --> 00:15:43,565
+And not only that there are any DogItems, but specifically that there are two
+
+253
+00:15:43,565 --> 00:15:49,000
+DogItems because, by default, we'll say there are two dogs in the array.
+
+254
+00:15:49,000 --> 00:15:53,070
+Now let's see how we can simulate the user interacting with our app
+
+255
+00:15:53,070 --> 00:15:55,810
+to make sure that the app behaves as we expected.
+
+256
+00:15:56,900 --> 00:16:00,540
+Again, this test case could be in a separate file or the same file.
+
+257
+00:16:00,540 --> 00:16:02,890
+Or in some other test suite.
+
+258
+00:16:02,890 --> 00:16:07,130
+Here we're testing that our app successfully adds a dog to the list
+
+259
+00:16:07,130 --> 00:16:08,190
+when we submit the form.
+
+260
+00:16:09,350 --> 00:16:13,600
+As we saw in the previous example, we'll mount the app component and
+
+261
+00:16:13,600 --> 00:16:17,880
+then we'll use that component to find the adddog component.
+
+262
+00:16:17,880 --> 00:16:22,840
+Remember adddog component was the form that allowed the user to enter information
+
+263
+00:16:22,840 --> 00:16:24,430
+about the new dog.
+
+264
+00:16:24,430 --> 00:16:28,830
+Now we want to simulate filing out the form and submitting the form.
+
+265
+00:16:28,830 --> 00:16:31,380
+So we'll use the AddDdog component and
+
+266
+00:16:31,380 --> 00:16:35,060
+we'll find an HTML element with the ID dogName.
+
+267
+00:16:36,690 --> 00:16:41,679
+This would be the input field from the form that was shown within this component.
+
+268
+00:16:43,300 --> 00:16:47,800
+Now we know that only one HTML element can have the id dogName,
+
+269
+00:16:49,520 --> 00:16:53,560
+but we still need to make sure that get the zero width element when it comes back.
+
+270
+00:16:54,580 --> 00:17:01,260
+Then we can specify the value of that HTML element and we'll set it to Lola.
+
+271
+00:17:01,260 --> 00:17:06,850
+Which simulates entering Lola into that HTML input field.
+
+272
+00:17:06,850 --> 00:17:12,459
+We'll do the same thing by putting a value into the imageURL field and
+
+273
+00:17:12,459 --> 00:17:14,594
+into the dogBreed field.
+
+274
+00:17:14,594 --> 00:17:16,868
+So now we've filled out the form.
+
+275
+00:17:16,868 --> 00:17:19,440
+Now we'll simulate submitting the form.
+
+276
+00:17:19,440 --> 00:17:22,680
+It's tempting to say that we should simulate clicking the button.
+
+277
+00:17:24,350 --> 00:17:28,570
+But with a React component, we actually just simulate the submission of the form.
+
+278
+00:17:29,760 --> 00:17:34,434
+In that adddog component, we'll find the HTML form element, and
+
+279
+00:17:34,434 --> 00:17:37,940
+then we'll call a simulate function on the form,
+
+280
+00:17:37,940 --> 00:17:41,536
+and we're simulating that we're submitting it.
+
+281
+00:17:41,536 --> 00:17:45,274
+Now that we've submitted the form, we expect that if
+
+282
+00:17:45,274 --> 00:17:50,107
+in our app component we should still be able to find a Dogs component.
+
+283
+00:17:50,107 --> 00:17:54,697
+Within the Dogs component we should still be able to find the DogItem component.
+
+284
+00:17:54,697 --> 00:17:57,960
+And now there should be three dog items, originally they were two and
+
+285
+00:17:57,960 --> 00:17:59,260
+now we just added another.
+
+286
+00:18:00,360 --> 00:18:03,940
+Not only should there be three dog items, but we also want to make sure that the dog
+
+287
+00:18:03,940 --> 00:18:07,250
+we added has the values that we entered in to the fields.
+
+288
+00:18:08,640 --> 00:18:13,600
+To do that we can access the app component state, using the state function.
+
+289
+00:18:14,850 --> 00:18:16,310
+And as I mentioned earlier,
+
+290
+00:18:16,310 --> 00:18:19,570
+we'll just say that in this state there's an array of dogs.
+
+291
+00:18:19,570 --> 00:18:23,810
+So we'll access element number two, which will be the third dog in the array,
+
+292
+00:18:23,810 --> 00:18:26,770
+and we'll check that the name is Lola
+
+293
+00:18:26,770 --> 00:18:29,250
+since that's the name that we entered into the form.
+
+294
+00:18:30,360 --> 00:18:34,150
+Last, let's see what happens when we try to delete one of the dogs
+
+295
+00:18:34,150 --> 00:18:37,160
+by clicking on the link that was next to the dog's breed.
+
+296
+00:18:38,750 --> 00:18:43,270
+Here we're writing the test case, we're mounting the app component.
+
+297
+00:18:45,450 --> 00:18:51,040
+Within the app components, we should be able to find a link using find,
+
+298
+00:18:51,040 --> 00:18:53,410
+and then a for the anchor.
+
+299
+00:18:54,500 --> 00:18:59,340
+We'll get the first link that we find, this will be the delete link.
+
+300
+00:18:59,340 --> 00:19:02,550
+And then we'll simulate clicking on that link.
+
+301
+00:19:02,550 --> 00:19:05,610
+Now we're expecting there to only be one dog.
+
+302
+00:19:05,610 --> 00:19:06,190
+You may say,
+
+303
+00:19:06,190 --> 00:19:10,880
+wait a minute, in the previous example we had three, why do we only have one?
+
+304
+00:19:10,880 --> 00:19:14,130
+Because each test starts with the original state.
+
+305
+00:19:14,130 --> 00:19:16,880
+In the original state we only had two dogs,
+
+306
+00:19:16,880 --> 00:19:20,030
+when we remove one now we're down to one.
+
+307
+00:19:20,030 --> 00:19:22,260
+So we've written all of our tests, now it's time to run them.
+
+308
+00:19:23,380 --> 00:19:27,928
+We can simply run the tests using the node package manager, in this command here,
+
+309
+00:19:27,928 --> 00:19:30,830
+npm run test.
+
+310
+00:19:30,830 --> 00:19:35,050
+If any of the tests fail, you'll see output that looks like this.
+
+311
+00:19:35,050 --> 00:19:39,430
+Here's the description of the test case that failed and here's what went wrong.
+
+312
+00:19:39,430 --> 00:19:43,570
+For instance, we expected some object to have a length of four, but
+
+313
+00:19:43,570 --> 00:19:45,580
+it got three, etc.
+
+314
+00:19:45,580 --> 00:19:49,140
+Down at the bottom here, you'll see all of the different test suites,
+
+315
+00:19:49,140 --> 00:19:52,770
+how many tests failed, how many tests passed, etc.
+
+316
+00:19:52,770 --> 00:19:56,370
+If all of the tests pass, then you'll see a message that looks like this.
+
+317
+00:19:57,470 --> 00:20:02,029
+To summarize, in this lesson we seen how we can use node to create React
+
+318
+00:20:02,029 --> 00:20:07,210
+applications that allow us to put our component code into separate .js files,
+
+319
+00:20:07,210 --> 00:20:10,406
+and then include them into our app as necessary.
+
+320
+00:20:10,406 --> 00:20:15,657
+We've also seen how we can use tools such as Mocha,Chai and
+
+321
+00:20:15,657 --> 00:20:19,237
+Enzyme to test our React applications.
+

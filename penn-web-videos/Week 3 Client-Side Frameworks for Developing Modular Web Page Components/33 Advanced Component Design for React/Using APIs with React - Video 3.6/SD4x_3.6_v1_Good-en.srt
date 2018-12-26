@@ -1,0 +1,836 @@
+0
+00:00:05,327 --> 00:00:08,440
+At the start of the course I showed a diagram of the worldwide web,
+
+1
+00:00:08,440 --> 00:00:11,156
+which we can think of it as a directed graph where the nodes
+
+2
+00:00:11,156 --> 00:00:14,250
+are the documents that are available on the web.
+
+3
+00:00:14,250 --> 00:00:18,150
+How can we take advantage of the structure of the web of all those documents
+
+4
+00:00:18,150 --> 00:00:21,150
+as we're putting together our own web applications, and
+
+5
+00:00:21,150 --> 00:00:23,420
+how can we do that using a framework such as React?
+
+6
+00:00:25,080 --> 00:00:27,820
+So, how was web development done in the old days, let's say,
+
+7
+00:00:27,820 --> 00:00:29,600
+the early to mid 1990s?
+
+8
+00:00:30,780 --> 00:00:34,560
+Here, we see a piece of C code that's handling everything that would have to
+
+9
+00:00:34,560 --> 00:00:38,340
+happen, including handling an incoming HTTP request,
+
+10
+00:00:38,340 --> 00:00:43,640
+generating the HTML content and sending back an HTTP response.
+
+11
+00:00:43,640 --> 00:00:47,060
+We can think of this as a monolithic approach to web development.
+
+12
+00:00:47,060 --> 00:00:50,730
+All of the code, all of the functionality is in one place.
+
+13
+00:00:50,730 --> 00:00:52,900
+So, how can we improve on this?
+
+14
+00:00:52,900 --> 00:00:56,240
+Well, we can best practices from software engineering.
+
+15
+00:00:56,240 --> 00:01:00,920
+One of those is modularity, where we break up the code in distinct components.
+
+16
+00:01:00,920 --> 00:01:04,080
+Each component services a specific purpose or goal.
+
+17
+00:01:04,080 --> 00:01:07,170
+We can also use a notion of functional independence.
+
+18
+00:01:07,170 --> 00:01:11,320
+Each component is able to do its job with minimal dependence on other components,
+
+19
+00:01:11,320 --> 00:01:14,390
+and the interaction between these components is done in
+
+20
+00:01:14,390 --> 00:01:16,600
+a standardized manner.
+
+21
+00:01:16,600 --> 00:01:20,000
+This allows us to change the different components without having to
+
+22
+00:01:20,000 --> 00:01:21,610
+change other components.
+
+23
+00:01:21,610 --> 00:01:24,820
+That's known as stability, and there's less dependency and
+
+24
+00:01:24,820 --> 00:01:27,540
+less coupling between each component.
+
+25
+00:01:27,540 --> 00:01:31,400
+This gave rise to an approach to developing web applications,
+
+26
+00:01:31,400 --> 00:01:34,120
+known as a service oriented architecture.
+
+27
+00:01:34,120 --> 00:01:39,430
+This approach was first identified in a letter to Amazon employees around 2002.
+
+28
+00:01:40,822 --> 00:01:45,010
+Where it was pointed out that the Amazon employees and the developers of the Amazon
+
+29
+00:01:45,010 --> 00:01:51,020
+software needed to expose their data and functionality through service interfaces.
+
+30
+00:01:51,020 --> 00:01:54,880
+That is that the only communication between the different parts of code
+
+31
+00:01:54,880 --> 00:01:59,090
+would be through these interfaces which had to be standardized.
+
+32
+00:01:59,090 --> 00:02:02,530
+They needed to be designed from the ground up to be externalizable, so
+
+33
+00:02:02,530 --> 00:02:04,990
+they could be used by other groups.
+
+34
+00:02:04,990 --> 00:02:08,500
+And each team needed to plan this in advance, knowing that perhaps
+
+35
+00:02:08,500 --> 00:02:11,950
+developers outside the organization will need to use them, as well.
+
+36
+00:02:13,090 --> 00:02:16,900
+Nowadays, we talk about Software as a Service or SaaS.
+
+37
+00:02:16,900 --> 00:02:20,850
+This extends the idea of service oriented architecture.
+
+38
+00:02:20,850 --> 00:02:25,660
+And now the entire software runs as a service that is the client or end
+
+39
+00:02:25,660 --> 00:02:31,270
+user is simply a composition of different services that are available on the web.
+
+40
+00:02:31,270 --> 00:02:35,225
+Here I list out many of the advantages of Software as a Service.
+
+41
+00:02:35,225 --> 00:02:38,315
+The point is that the user might have a web browser, but
+
+42
+00:02:38,315 --> 00:02:41,765
+that's the only software that they need to install.
+
+43
+00:02:41,765 --> 00:02:45,845
+This makes it easy to add new features, add new data sets, and
+
+44
+00:02:45,845 --> 00:02:49,675
+the user doesn't have to worry about, for instance, losing data or
+
+45
+00:02:49,675 --> 00:02:52,965
+being behind with different versions of the software.
+
+46
+00:02:52,965 --> 00:02:57,310
+On this slide I introduce this notion of microservices.
+
+47
+00:02:57,310 --> 00:02:59,610
+These images came from Martin Fowler,
+
+48
+00:02:59,610 --> 00:03:04,280
+where he's pointing out that in the old days of the monolithic web application,
+
+49
+00:03:04,280 --> 00:03:08,850
+all of the functionality was in a single process as we can see up here.
+
+50
+00:03:09,920 --> 00:03:14,310
+The different colored shapes indicate different pieces of functionality.
+
+51
+00:03:14,310 --> 00:03:18,430
+If we wanted to scale that, so that many different users on the web
+
+52
+00:03:18,430 --> 00:03:23,790
+could use that different functionality, we would have to do that by replicating
+
+53
+00:03:23,790 --> 00:03:28,170
+the entire application or process onto multiple servers.
+
+54
+00:03:28,170 --> 00:03:33,330
+With Software as a Service, or SaaS, which is a microservice as architecture,
+
+55
+00:03:33,330 --> 00:03:40,170
+now each instance does one particular task, or provides one particular service.
+
+56
+00:03:40,170 --> 00:03:44,570
+And we can scale this by aggregating the different services, as needed,
+
+57
+00:03:44,570 --> 00:03:49,360
+as shown down here, but only replicating
+
+58
+00:03:49,360 --> 00:03:53,759
+the services that need to be replicated and not replicating the entire process.
+
+59
+00:03:54,970 --> 00:03:57,860
+So how do these services interact with each other and
+
+60
+00:03:57,860 --> 00:04:01,750
+how does the client or browser interact with these services?
+
+61
+00:04:01,750 --> 00:04:06,650
+These days we use a notation known as REST or REpresentational State Transfer.
+
+62
+00:04:08,020 --> 00:04:12,560
+In REST, we think about the content on the web as resources.
+
+63
+00:04:12,560 --> 00:04:17,960
+Not necessarily pages but data that we can access through a standard mechanism.
+
+64
+00:04:17,960 --> 00:04:21,300
+That standard mechanism is usually known as an API or
+
+65
+00:04:21,300 --> 00:04:24,140
+Application Programming Interface.
+
+66
+00:04:24,140 --> 00:04:28,110
+Now APIs exist in just about every programming language, but
+
+67
+00:04:28,110 --> 00:04:31,550
+in web programming we think of the API as some URL or
+
+68
+00:04:31,550 --> 00:04:37,790
+set of URLs that gives us data that we can then include in our web application.
+
+69
+00:04:37,790 --> 00:04:41,100
+In the rest of this lesson I'm going to show you an example of how we can use
+
+70
+00:04:41,100 --> 00:04:45,660
+a RESTful API to get content from the New York Times newspaper and
+
+71
+00:04:45,660 --> 00:04:49,360
+include it in our web application using a react component.
+
+72
+00:04:49,360 --> 00:04:55,248
+The New York Times is an American Daily newspaper, and they provide a variety
+
+73
+00:04:55,248 --> 00:05:01,511
+of APIs that allow developers to access article data about books, movies, etc.
+
+74
+00:05:01,511 --> 00:05:06,153
+In this example, going to create a web app that displays clickable New York Times
+
+75
+00:05:06,153 --> 00:05:08,140
+articles and images.
+
+76
+00:05:08,140 --> 00:05:12,430
+To get started, we need to let the New York Times know that we're going to be
+
+77
+00:05:12,430 --> 00:05:18,080
+accessing their API, by requesting a developer key shown at this URL.
+
+78
+00:05:18,080 --> 00:05:21,190
+Once you have that developer key, you can test out the API, and
+
+79
+00:05:21,190 --> 00:05:23,800
+seeing what the data looks like by going to this URL.
+
+80
+00:05:25,080 --> 00:05:26,680
+Let's see how we would do this in React.
+
+81
+00:05:27,800 --> 00:05:29,670
+First we'll create a React component named,
+
+82
+00:05:29,670 --> 00:05:34,740
+ArticlesGrid that we're going to drop into our page to display all of the data.
+
+83
+00:05:35,940 --> 00:05:41,320
+As we saw in previous lessons, ArticlesGrid will extend React.Component,
+
+84
+00:05:41,320 --> 00:05:45,231
+it will have a constructor that sets its properties, and
+
+85
+00:05:45,231 --> 00:05:50,620
+then we'll initialize the state to an empty array called articles.
+
+86
+00:05:50,620 --> 00:05:55,270
+Now we'll go out on the web and get the data from the New York Times.
+
+87
+00:05:55,270 --> 00:05:58,660
+We do this in the componentDidMount function.
+
+88
+00:05:58,660 --> 00:06:02,920
+This is the callback function that's called immediately after
+
+89
+00:06:02,920 --> 00:06:05,290
+the component is mounted in the virtual dom.
+
+90
+00:06:06,750 --> 00:06:12,070
+Then we have the URL that we'll use to access the New York Times API.
+
+91
+00:06:12,070 --> 00:06:15,660
+The first part of the URL is standard for anyone accessing the API.
+
+92
+00:06:16,670 --> 00:06:21,431
+The second part includes your specific API key which you would receive
+
+93
+00:06:21,431 --> 00:06:23,780
+when you register as a developer.
+
+94
+00:06:23,780 --> 00:06:27,993
+Now, we'll request the data using this call here,
+
+95
+00:06:27,993 --> 00:06:31,360
+which is part of the jQuery AJAX library.
+
+96
+00:06:32,500 --> 00:06:37,200
+Although we haven't looked into that, suffice it to say, that this function call
+
+97
+00:06:37,200 --> 00:06:42,140
+will allow us to make an HTTP request to the URL that we just specified.
+
+98
+00:06:43,540 --> 00:06:48,050
+And when the HTTP response comes back, it will invoke this function.
+
+99
+00:06:48,050 --> 00:06:52,400
+This function will then set the the state of this React.Component.
+
+100
+00:06:53,730 --> 00:06:58,720
+That is, we'll call setState so that the component will re-render.
+
+101
+00:06:58,720 --> 00:07:01,580
+And we'll set the articles variable
+
+102
+00:07:01,580 --> 00:07:06,350
+to the return value of this.parse, which we'll see in a subsequent slide.
+
+103
+00:07:06,350 --> 00:07:12,240
+This.parse will take the data that comes back in that HTTP request.
+
+104
+00:07:12,240 --> 00:07:16,690
+Then we'll bind the result back to this React.Component.
+
+105
+00:07:16,690 --> 00:07:21,630
+Here's just a tiny piece of the data that comes back from the New York Times API.
+
+106
+00:07:21,630 --> 00:07:25,670
+It uses JSON, which is the JavaScript Object Notation
+
+107
+00:07:25,670 --> 00:07:28,730
+which is just a string representation of an object.
+
+108
+00:07:28,730 --> 00:07:34,220
+This object has an attribute called response which is also an object.
+
+109
+00:07:34,220 --> 00:07:39,670
+One of the attributes or properties of that object is this meta information.
+
+110
+00:07:39,670 --> 00:07:42,339
+And then there's an array called docs.
+
+111
+00:07:43,600 --> 00:07:48,590
+In that array, we have an object for each document and
+
+112
+00:07:48,590 --> 00:07:52,390
+it has properties such as the URL, the snippets or
+
+113
+00:07:52,390 --> 00:07:57,960
+a small piece of text, the lead paragraph or first paragraph, and much, much more.
+
+114
+00:07:59,060 --> 00:08:04,400
+Following that would be the next article, which is another object and so on.
+
+115
+00:08:04,400 --> 00:08:08,570
+So we see that the New York Times API will return a lot of raw data but
+
+116
+00:08:08,570 --> 00:08:10,300
+we only need a small part of it.
+
+117
+00:08:10,300 --> 00:08:14,900
+In particular, we only want the URL of the image that we want to display,
+
+118
+00:08:14,900 --> 00:08:19,920
+the title of the article, and then we'll link the URL back to the article.
+
+119
+00:08:19,920 --> 00:08:23,310
+So that the user can click it and go to the New York Times website.
+
+120
+00:08:23,310 --> 00:08:27,470
+So let's see how we would parse that data that comes back from the API
+
+121
+00:08:27,470 --> 00:08:30,728
+into something that we can use in our React.Component.
+
+122
+00:08:30,728 --> 00:08:35,130
+Within our ArticlesGrid class we'll have a function called parse
+
+123
+00:08:35,130 --> 00:08:37,100
+that's going to take the results, or
+
+124
+00:08:37,100 --> 00:08:43,330
+the data that came back from making the API call to the New York Times.
+
+125
+00:08:43,330 --> 00:08:46,330
+First we'll do a little bit of error handling, and
+
+126
+00:08:46,330 --> 00:08:50,820
+see that if there are no results, that is if results is empty or null, and
+
+127
+00:08:50,820 --> 00:08:55,270
+there's no response in the results, then we'll just return an empty array.
+
+128
+00:08:55,270 --> 00:09:00,040
+Otherwise, in the results object, we'll get the response object,
+
+129
+00:09:00,040 --> 00:09:02,090
+that we saw in a previous slide.
+
+130
+00:09:02,090 --> 00:09:04,550
+And from that we'll get the docs,
+
+131
+00:09:04,550 --> 00:09:09,040
+which are all the documents that came back from that API request.
+
+132
+00:09:09,040 --> 00:09:11,690
+We'll declare an array called parsedArticles,
+
+133
+00:09:11,690 --> 00:09:14,760
+which will be the articles that we're going to return.
+
+134
+00:09:14,760 --> 00:09:17,890
+And now we'll start looping over all of the articles
+
+135
+00:09:17,890 --> 00:09:20,830
+that were in the response from the API.
+
+136
+00:09:20,830 --> 00:09:25,990
+We'll create a variable called article, which is just each individual article.
+
+137
+00:09:25,990 --> 00:09:28,650
+And then we'll apply this function here.
+
+138
+00:09:28,650 --> 00:09:31,340
+Article is the article we're considering.
+
+139
+00:09:31,340 --> 00:09:36,960
+Multimedia is a property in the article which contains the information
+
+140
+00:09:36,960 --> 00:09:40,210
+about the different media, for instance, the images.
+
+141
+00:09:40,210 --> 00:09:44,760
+Multimedia is an array so we're going to use the find function.
+
+142
+00:09:44,760 --> 00:09:47,452
+And we'll pass the find function,
+
+143
+00:09:47,452 --> 00:09:52,360
+the function called isXL that we've defined down here.
+
+144
+00:09:52,360 --> 00:09:56,712
+What this will do is let us find any multimedia where its
+
+145
+00:09:56,712 --> 00:10:03,590
+image.subtype is xlarge, because we only want to show extra large images.
+
+146
+00:10:03,590 --> 00:10:08,052
+If this article has multimedia which has an extra large image,
+
+147
+00:10:08,052 --> 00:10:13,220
+then we'll include it in our parsedArticles return value.
+
+148
+00:10:13,220 --> 00:10:18,860
+We'll use the push function on this array, and we'll create a new object as follows.
+
+149
+00:10:18,860 --> 00:10:23,040
+The object will have a property called id, which will come from the article.
+
+150
+00:10:23,040 --> 00:10:25,340
+And the object will have a title.
+
+151
+00:10:25,340 --> 00:10:28,940
+Now here we see a little bit of JavaScript trickery.
+
+152
+00:10:28,940 --> 00:10:34,740
+If this article has a main headline, then it will set the article to that.
+
+153
+00:10:34,740 --> 00:10:38,680
+However, if there is no main headline, then this would return undefined.
+
+154
+00:10:39,780 --> 00:10:45,220
+Undefined is a false value, so because we're using the or expression here,
+
+155
+00:10:46,390 --> 00:10:52,820
+it'll evaluate this part which will be Untitled, and set title to Untitled.
+
+156
+00:10:52,820 --> 00:10:57,806
+The object will also have the image URL where we'll apply this function
+
+157
+00:10:57,806 --> 00:11:02,724
+again to get the part of the multimedia that has the extra large image.
+
+158
+00:11:02,724 --> 00:11:04,558
+And we'll get its URL.
+
+159
+00:11:04,558 --> 00:11:09,737
+And as we saw on the previous line if this returns undefined then or
+
+160
+00:11:09,737 --> 00:11:13,317
+which is here will also evaluate this part and
+
+161
+00:11:13,317 --> 00:11:17,480
+will just set the image URL to the hash or pound sign.
+
+162
+00:11:18,550 --> 00:11:22,080
+Last we'll do the same for the web URL for this article.
+
+163
+00:11:22,080 --> 00:11:26,080
+So that when the user of our web app clicks it, they go to the New York Times.
+
+164
+00:11:27,090 --> 00:11:30,870
+Finally we'll return this array of parsed articles so
+
+165
+00:11:30,870 --> 00:11:34,000
+that they can be displayed in our React.Component.
+
+166
+00:11:34,000 --> 00:11:38,400
+Now we have the data, let's create a component that will display each article.
+
+167
+00:11:38,400 --> 00:11:42,810
+The code we see down at the bottom here is our React.Component, but
+
+168
+00:11:42,810 --> 00:11:47,370
+we're just using this shorthand notation, because it only has the render function.
+
+169
+00:11:47,370 --> 00:11:52,290
+So we'll create a variable, called article, and use this notation.
+
+170
+00:11:52,290 --> 00:11:57,110
+We're only defining the render function, and
+
+171
+00:11:57,110 --> 00:12:02,080
+part of the props for this React.Component is the article
+
+172
+00:12:02,080 --> 00:12:05,580
+that will be passed to it by the component that creates it.
+
+173
+00:12:05,580 --> 00:12:09,540
+We'll generate the URL for displaying the image and then for
+
+174
+00:12:09,540 --> 00:12:14,550
+this React.Component we're going to return the div.
+
+175
+00:12:14,550 --> 00:12:19,330
+Here we see that in this div we're going to put it into a CSS class.
+
+176
+00:12:19,330 --> 00:12:20,390
+You might say well,
+
+177
+00:12:20,390 --> 00:12:26,100
+wait a minute I thought to add it to a CSS class I would use the word class here.
+
+178
+00:12:26,100 --> 00:12:29,730
+However, because the word class is a reserved word in JavaScript,
+
+179
+00:12:29,730 --> 00:12:31,380
+we can't use it here.
+
+180
+00:12:31,380 --> 00:12:36,680
+So in React, if we want to add an HTML element to a CSS class,
+
+181
+00:12:36,680 --> 00:12:38,010
+we have to use className.
+
+182
+00:12:39,070 --> 00:12:42,310
+Here, we're putting this in the article class.
+
+183
+00:12:42,310 --> 00:12:44,530
+Within that div, we'll have our link.
+
+184
+00:12:45,750 --> 00:12:48,990
+This will also be in a class called article-link.
+
+185
+00:12:48,990 --> 00:12:53,695
+And the target of this link will be the web URL that came from the article
+
+186
+00:12:53,695 --> 00:12:56,370
+that was passed as the prop.
+
+187
+00:12:56,370 --> 00:13:00,980
+We'll have a clickable image that we'll also put into a CSS class.
+
+188
+00:13:00,980 --> 00:13:04,260
+We'll use the title, which will appear when the user hovers or
+
+189
+00:13:04,260 --> 00:13:09,250
+mouses over the image and then the source of the image.
+
+190
+00:13:09,250 --> 00:13:12,730
+Finally, we're ready to put it all together by displaying it
+
+191
+00:13:12,730 --> 00:13:14,885
+in our ArticlesGrid React.Component.
+
+192
+00:13:16,020 --> 00:13:20,730
+The ArticlesGrid component will have a render function that's going to
+
+193
+00:13:20,730 --> 00:13:23,751
+also use a little bit of JavaScript trickery.
+
+194
+00:13:23,751 --> 00:13:28,940
+If this.state.articles is undefined, then it's a falsy value, and
+
+195
+00:13:28,940 --> 00:13:34,910
+false and anything will return false, so in this case we won't display anything.
+
+196
+00:13:36,150 --> 00:13:40,950
+However, if articles does exist, that's a truthy value, so
+
+197
+00:13:40,950 --> 00:13:45,570
+then we will display what comes next which is this div.
+
+198
+00:13:45,570 --> 00:13:49,539
+Remember that the ArticlesGrid had the articles that
+
+199
+00:13:49,539 --> 00:13:53,620
+was set in the componentDidMount function.
+
+200
+00:13:53,620 --> 00:13:57,040
+That's an array and we're going to use the math function on the array.
+
+201
+00:13:57,040 --> 00:14:00,210
+Recall that the math function applies
+
+202
+00:14:00,210 --> 00:14:03,420
+this argument function to each element of the array.
+
+203
+00:14:03,420 --> 00:14:09,750
+For each element of the array, then, we'll return the JSX with the article,
+
+204
+00:14:09,750 --> 00:14:14,730
+passing each article as a prop, and also passing a unique key.
+
+205
+00:14:15,730 --> 00:14:19,690
+In summary, in this lesson, we saw the service oriented architecture and
+
+206
+00:14:19,690 --> 00:14:22,780
+Software as a Service, which allow us to create
+
+207
+00:14:22,780 --> 00:14:27,090
+web applications simply by combining different online components.
+
+208
+00:14:27,090 --> 00:14:30,203
+And we saw how we could use RESTful APIs in React.
+

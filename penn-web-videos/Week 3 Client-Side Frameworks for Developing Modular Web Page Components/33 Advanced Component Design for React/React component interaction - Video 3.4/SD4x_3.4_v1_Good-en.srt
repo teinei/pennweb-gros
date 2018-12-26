@@ -1,0 +1,628 @@
+0
+00:00:05,708 --> 00:00:09,530
+Last time, we saw how React components can react to user events and
+
+1
+00:00:09,530 --> 00:00:14,350
+change their appearance and create dynamic HTML based on their state.
+
+2
+00:00:14,350 --> 00:00:18,670
+Part of the point of React is that the components can interact with each other
+
+3
+00:00:18,670 --> 00:00:20,850
+and that one component can affect another.
+
+4
+00:00:20,850 --> 00:00:23,490
+In this lesson we'll see two such examples.
+
+5
+00:00:23,490 --> 00:00:26,130
+The first example is this filtered list.
+
+6
+00:00:26,130 --> 00:00:30,365
+At the top I have an input box that allows me to type some text.
+
+7
+00:00:30,365 --> 00:00:34,390
+And at the bottom I have a pre-populated list of animals.
+
+8
+00:00:34,390 --> 00:00:38,820
+In my input box, when I type the letter A, the list shrinks and
+
+9
+00:00:38,820 --> 00:00:42,080
+it removes all the animals that don't contain that A.
+
+10
+00:00:42,080 --> 00:00:45,750
+Or you can think of it as only showing the ones that do contain an A.
+
+11
+00:00:46,930 --> 00:00:48,390
+When I type more letters, for
+
+12
+00:00:48,390 --> 00:00:53,530
+instance N and T, I only see the words that contain ant.
+
+13
+00:00:53,530 --> 00:00:57,130
+The point here is that there are actually two components.
+
+14
+00:00:57,130 --> 00:01:02,150
+One is clearly this list that is dynamically changing based on what's
+
+15
+00:01:02,150 --> 00:01:03,380
+typed up here.
+
+16
+00:01:03,380 --> 00:01:07,950
+But this list, down here, is just a general dynamic list
+
+17
+00:01:07,950 --> 00:01:12,610
+that's part of an overall bigger component which is this whole thing.
+
+18
+00:01:12,610 --> 00:01:16,640
+Let's start with the outer component or the application itself.
+
+19
+00:01:16,640 --> 00:01:19,430
+This is a component I've called FilteredList.
+
+20
+00:01:19,430 --> 00:01:21,350
+As we saw in previous examples,
+
+21
+00:01:21,350 --> 00:01:25,610
+it has constructor that passes the properties to the super class constructor.
+
+22
+00:01:25,610 --> 00:01:28,410
+And it's going to create a local variable called allItems,
+
+23
+00:01:28,410 --> 00:01:31,990
+which is an array that's initialized with the names of the animals.
+
+24
+00:01:31,990 --> 00:01:35,780
+Then we'll initialize the state to have two parts.
+
+25
+00:01:35,780 --> 00:01:39,960
+First will be the initialItems, which is just the set of all the items, or
+
+26
+00:01:39,960 --> 00:01:41,740
+the array of allItems.
+
+27
+00:01:41,740 --> 00:01:44,530
+And then the currentItems which will be the thing that changes.
+
+28
+00:01:44,530 --> 00:01:46,770
+These are the items to be displayed.
+
+29
+00:01:46,770 --> 00:01:51,010
+Now, we have our callback function, called filterList.
+
+30
+00:01:51,010 --> 00:01:55,114
+It's going to create a local variable called updatedList initially set to
+
+31
+00:01:55,114 --> 00:01:57,335
+the initialItems, to all of the items.
+
+32
+00:01:57,335 --> 00:02:01,200
+And then it's going to modify updatedList as follows.
+
+33
+00:02:01,200 --> 00:02:05,220
+It's going to use the filter function on the updated list.
+
+34
+00:02:05,220 --> 00:02:10,240
+Remember, when called on an array the filter function returns
+
+35
+00:02:10,240 --> 00:02:16,060
+all of the elements in that array, whereby this function returns true.
+
+36
+00:02:16,060 --> 00:02:20,150
+So it will apply this function to all elements in the array and
+
+37
+00:02:20,150 --> 00:02:23,460
+return the elements for which it's true.
+
+38
+00:02:23,460 --> 00:02:25,290
+So here's what this function does.
+
+39
+00:02:25,290 --> 00:02:29,230
+For each item in the array, it's going to use the search function.
+
+40
+00:02:29,230 --> 00:02:32,820
+Remember that search looks through a string and
+
+41
+00:02:32,820 --> 00:02:35,690
+sees if it contains another string.
+
+42
+00:02:35,690 --> 00:02:39,220
+Here, the string that we're seeing if it contains
+
+43
+00:02:39,220 --> 00:02:43,000
+is the value that's typed into the input.
+
+44
+00:02:43,000 --> 00:02:45,880
+Which came from here as the argument to this function.
+
+45
+00:02:47,090 --> 00:02:50,090
+That will be what the user has typed into the box.
+
+46
+00:02:50,090 --> 00:02:54,500
+Search will return -1 if this string,
+
+47
+00:02:54,500 --> 00:02:58,390
+what they've typed into the box, is not found in the item itself.
+
+48
+00:02:59,600 --> 00:03:01,890
+So that way it will remove it or filter it out.
+
+49
+00:03:03,235 --> 00:03:08,340
+But search will return a positive number, the index, if the element,
+
+50
+00:03:08,340 --> 00:03:11,420
+or if the string is found in that string.
+
+51
+00:03:11,420 --> 00:03:16,380
+At the end of calling that line of code, updatedList will contain all of
+
+52
+00:03:16,380 --> 00:03:22,570
+the elements in the initialItems that do contain whatever was typed into the box.
+
+53
+00:03:22,570 --> 00:03:27,337
+And finally, it will update the state by calling this.setState and
+
+54
+00:03:27,337 --> 00:03:31,370
+setting the currentItems to that updatedList.
+
+55
+00:03:31,370 --> 00:03:34,310
+Now, we'll see the render function for our FilteredList component.
+
+56
+00:03:35,430 --> 00:03:38,020
+The render function will return this div
+
+57
+00:03:38,020 --> 00:03:41,040
+containing the input box where the user can type.
+
+58
+00:03:41,040 --> 00:03:42,849
+And when the input changes
+
+59
+00:03:44,030 --> 00:03:48,600
+then the filterList function that we saw on the previous slide will be invoked.
+
+60
+00:03:48,600 --> 00:03:53,750
+Now, we see how the FilteredList component uses another components.
+
+61
+00:03:53,750 --> 00:03:55,950
+When we render the FilteredList component,
+
+62
+00:03:55,950 --> 00:04:00,120
+we also rendered this ListItems component which we're going to create below.
+
+63
+00:04:01,210 --> 00:04:04,530
+This is how React components can interact with each other
+
+64
+00:04:04,530 --> 00:04:06,560
+where one contains another.
+
+65
+00:04:06,560 --> 00:04:11,390
+The prompts that we send to ListItems will be whatever the current items are in
+
+66
+00:04:11,390 --> 00:04:13,770
+the FilteredList state.
+
+67
+00:04:13,770 --> 00:04:16,560
+Now we see our ListItems compoent.
+
+68
+00:04:16,560 --> 00:04:21,530
+Although, it's defined in the same HTML page we could use this ListItems component
+
+69
+00:04:21,530 --> 00:04:26,820
+in any application where we just want a dynamically generated list of items.
+
+70
+00:04:26,820 --> 00:04:29,990
+It will only have this render function which is going to return
+
+71
+00:04:29,990 --> 00:04:31,810
+an unordered list.
+
+72
+00:04:31,810 --> 00:04:36,330
+It'll take the items that were passed as the properties when we created it in
+
+73
+00:04:36,330 --> 00:04:41,250
+the FilteredList, and it will use the map function on that items array.
+
+74
+00:04:42,460 --> 00:04:48,140
+Remember, the map function just applies this function to every item in the array.
+
+75
+00:04:49,250 --> 00:04:51,460
+And what this function is going to do is for
+
+76
+00:04:51,460 --> 00:04:57,050
+each item return this JSX which is the list item
+
+77
+00:04:58,280 --> 00:05:04,280
+specifying a unique key based on the item and then the value of the item.
+
+78
+00:05:04,280 --> 00:05:09,330
+Last, when we want to drop this into our HTML page, we only need
+
+79
+00:05:09,330 --> 00:05:14,280
+to render the FilteredList component which contains the list item components.
+
+80
+00:05:15,810 --> 00:05:18,130
+In this example, I have a to-do list.
+
+81
+00:05:18,130 --> 00:05:22,902
+I can type in the input box and then add it to a growing unordered list.
+
+82
+00:05:22,902 --> 00:05:27,346
+For instance, I'll type Learn JavaScript, I'll click the Add button, and
+
+83
+00:05:27,346 --> 00:05:30,590
+it will be added to our unordered lists.
+
+84
+00:05:30,590 --> 00:05:34,750
+I'll type something else like find happiness, add that, and so on.
+
+85
+00:05:34,750 --> 00:05:39,490
+When I click on an element in the unordered lists, it will cross it out, for
+
+86
+00:05:39,490 --> 00:05:42,710
+instance, to mark that I've done that, I've accomplished it.
+
+87
+00:05:42,710 --> 00:05:46,532
+In this case we actually have three layers of components.
+
+88
+00:05:46,532 --> 00:05:51,086
+Each element of our to-do list is itself a component,
+
+89
+00:05:51,086 --> 00:05:54,650
+the list itself is another component, and
+
+90
+00:05:54,650 --> 00:05:59,800
+then the entire thing is a third parent component.
+
+91
+00:05:59,800 --> 00:06:02,350
+Let's look at the code here, starting with the outer, or
+
+92
+00:06:02,350 --> 00:06:05,590
+the top level component, which I've called TodoApp.
+
+93
+00:06:06,780 --> 00:06:10,220
+As we've seen before, it has a constructor that passes the properties to the super
+
+94
+00:06:10,220 --> 00:06:14,850
+class constructor, and its state is going to contain three things.
+
+95
+00:06:14,850 --> 00:06:18,140
+Initially, the array of items will be empty.
+
+96
+00:06:19,480 --> 00:06:23,075
+The text appearing in the text box will be empty.
+
+97
+00:06:23,075 --> 00:06:28,015
+And then there will be some unique id for each element in the unordered list and
+
+98
+00:06:28,015 --> 00:06:30,070
+we'll initialize the id to 0.
+
+99
+00:06:30,070 --> 00:06:34,100
+Now, we have a call back function handleChange and
+
+100
+00:06:34,100 --> 00:06:38,130
+when handleChange is invoked, it's going to modify the state
+
+101
+00:06:38,130 --> 00:06:42,850
+by setting the text to whatever is typed into the box.
+
+102
+00:06:42,850 --> 00:06:47,660
+I have another call back function, handleSubmit, which we'll see in a moment,
+
+103
+00:06:47,660 --> 00:06:51,190
+is used when we submit the form and click the add button.
+
+104
+00:06:51,190 --> 00:06:52,690
+Now, because we're using a form and
+
+105
+00:06:52,690 --> 00:06:55,940
+by default submitting a form will reload the page.
+
+106
+00:06:55,940 --> 00:06:57,480
+We don't want that to happen.
+
+107
+00:06:57,480 --> 00:07:00,120
+So we need to use this preventDefault function
+
+108
+00:07:01,370 --> 00:07:04,230
+to not reload the page when we submit the form.
+
+109
+00:07:04,230 --> 00:07:09,140
+Then we'll create a new item, which is an object that has some text which is
+
+110
+00:07:09,140 --> 00:07:13,760
+going to be the text that came from this object state, and some unique id.
+
+111
+00:07:14,820 --> 00:07:17,481
+Last, when we submit the form,
+
+112
+00:07:17,481 --> 00:07:23,299
+we're gonna set the state of this outer component by concatenating or
+
+113
+00:07:23,299 --> 00:07:28,327
+adding the newly created item to the array of current items,
+
+114
+00:07:28,327 --> 00:07:31,793
+clearing the text, and updating the id.
+
+115
+00:07:31,793 --> 00:07:35,530
+Now, we'll see the render function for our TodoApp component.
+
+116
+00:07:35,530 --> 00:07:41,690
+The render function is going to return this div with the HTML header TO-DO LIST.
+
+117
+00:07:41,690 --> 00:07:43,820
+And then inside the TodoApp,
+
+118
+00:07:43,820 --> 00:07:48,140
+we have a TodoList component that we'll see on the next slide.
+
+119
+00:07:48,140 --> 00:07:52,660
+When we create the TodoList component, we're going to pass
+
+120
+00:07:52,660 --> 00:07:57,320
+this .state.items as the items props to that component.
+
+121
+00:07:57,320 --> 00:07:59,890
+Now, also in the TodoApp we have a form.
+
+122
+00:07:59,890 --> 00:08:04,700
+The form has the onSubmit event, and we're going to bind the onSubmit
+
+123
+00:08:04,700 --> 00:08:09,720
+event to the handleSubmit function that's defined in this component.
+
+124
+00:08:09,720 --> 00:08:12,330
+There's also the input box or input field.
+
+125
+00:08:12,330 --> 00:08:17,550
+We're going to bind the handleChange function in this component to the input
+
+126
+00:08:17,550 --> 00:08:24,220
+fields onChange event and we'll set it's value to this components state.text.
+
+127
+00:08:24,220 --> 00:08:27,700
+Last, we have the Add button that is part of the form.
+
+128
+00:08:27,700 --> 00:08:29,800
+Now, lets see the TodoList component.
+
+129
+00:08:29,800 --> 00:08:34,704
+Remember, within the TodoApp, the outer component, we're going to
+
+130
+00:08:34,704 --> 00:08:39,457
+render the TodooList and will pass it the items in the app to the list.
+
+131
+00:08:39,457 --> 00:08:43,929
+TodoList is of course React to component, but we just have the render function,
+
+132
+00:08:43,929 --> 00:08:47,270
+which is going to return this unordered list.
+
+133
+00:08:47,270 --> 00:08:52,785
+It'll take the items that were passed as the props when we created the TodoList.
+
+134
+00:08:53,980 --> 00:08:55,820
+As we saw on the previous example,
+
+135
+00:08:55,820 --> 00:08:59,980
+we'll map this function to each element in the item's array.
+
+136
+00:09:01,280 --> 00:09:07,110
+For each one we'll now return a TodoItem that has a unique identifier and
+
+137
+00:09:07,110 --> 00:09:08,770
+the text to display.
+
+138
+00:09:08,770 --> 00:09:13,560
+Finally, we see the TodoItem, the TodoItem, which is part of the TodoList,
+
+139
+00:09:13,560 --> 00:09:18,490
+is a react component that has a constructor, and has its own state.
+
+140
+00:09:18,490 --> 00:09:23,011
+Here we have a Boolean value, amDone, to indicate whether we've finished or
+
+141
+00:09:23,011 --> 00:09:25,418
+accomplished this item on our TodoList.
+
+142
+00:09:25,418 --> 00:09:29,567
+And we'll have a callback function for this particular element,
+
+143
+00:09:29,567 --> 00:09:34,307
+the particular list item which will be called handleClick which will flip or
+
+144
+00:09:34,307 --> 00:09:38,370
+toggle the amDone Boolean that's part of the state.
+
+145
+00:09:38,370 --> 00:09:42,901
+Now, when I render a TodoItem, I'll determine whether there should be a line
+
+146
+00:09:42,901 --> 00:09:46,816
+through the text using the ternary operator if amDone is true then,
+
+147
+00:09:46,816 --> 00:09:49,653
+we'll say line-through, otherwise, none.
+
+148
+00:09:49,653 --> 00:09:54,133
+And then when I render this one list item, I'll give it a unique key which
+
+149
+00:09:54,133 --> 00:09:59,030
+came from the properties that were passed to it when it was created.
+
+150
+00:09:59,030 --> 00:10:03,438
+I'll bind the handleClick function to the onClick event.
+
+151
+00:10:03,438 --> 00:10:07,760
+And then, I'll set the textDecoration style attribute to
+
+152
+00:10:07,760 --> 00:10:12,180
+either be line through or none and finally display the text.
+
+153
+00:10:13,190 --> 00:10:16,720
+In this lesson we've seen how React components can interact with each other
+
+154
+00:10:16,720 --> 00:10:19,100
+where one component includes another.
+
+155
+00:10:19,100 --> 00:10:23,400
+It can be difficult to think in terms of components when designing the HTML pages.
+
+156
+00:10:23,400 --> 00:10:26,917
+But in the next lesson, we'll see some of the advantages of doing so.
+
